@@ -1,0 +1,81 @@
+{
+ "sallie": {
+  "n": 12,
+  "w": 437,
+  "h": 279
+ },
+ "tarjeta": {
+  "w": 1400,
+  "h": 863
+ },
+ "annie": {
+  "n": 15,
+  "w": 300,
+  "h": 200
+ },
+ "discos": {
+  "galgo": {
+   "pasos": 13,
+   "w": 900,
+   "h": 900,
+   "fichero": "Descriptive Zoopraxography Greyhound Galloping.jpg"
+  },
+  "bisonte": {
+   "pasos": 13,
+   "w": 900,
+   "h": 900,
+   "fichero": "Descriptive Zoopraxography Buffalo Galloping.jpg"
+  },
+  "alce": {
+   "pasos": 13,
+   "w": 900,
+   "h": 900,
+   "fichero": "Descriptive Zoopraxography Elk Galloping.jpg"
+  },
+  "leon": {
+   "pasos": 13,
+   "w": 900,
+   "h": 900,
+   "fichero": "Descriptive Zoopraxography Lion Walking.jpg"
+  },
+  "elefante": {
+   "pasos": 12,
+   "w": 900,
+   "h": 900,
+   "fichero": "Descriptive Zoopraxography Elephant Ambling.jpg"
+  },
+  "palomas": {
+   "pasos": 12,
+   "w": 900,
+   "h": 900,
+   "fichero": "Descriptive Zoopraxography Pigeons Flying.jpg"
+  }
+ },
+ "laminas": {
+  "l563": {
+   "w": 500,
+   "h": 399,
+   "fichero": "Animal locomotion. Plate 563 (Boston Public Library).jpg"
+  },
+  "l709": {
+   "w": 500,
+   "h": 398,
+   "fichero": "Animal locomotion. Plate 709 (Boston Public Library).jpg"
+  },
+  "l686": {
+   "w": 500,
+   "h": 300,
+   "fichero": "Eadweard Muybridge - Animal Locomotion, Plate 686 - Google Art Project.jpg"
+  },
+  "l712": {
+   "w": 500,
+   "h": 155,
+   "fichero": "Eadweard Muybridge - Animal Locomotion, Plate 712 - Google Art Project.jpg"
+  },
+  "derby": {
+   "w": 500,
+   "h": 365,
+   "fichero": "Le Derby de 1821 à Epsom - Théodore Géricault - Musée du Louvre Peintures MI 708.jpg"
+  }
+ }
+}

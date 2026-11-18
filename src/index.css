@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+/* Lenis: su CSS no se exporta como ruta, se copia aquí. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Proyector (variante): negro de estudio con la rejilla blanca de Muybridge, fotos en gris de albúmina y un
+   solo acento, el cian del chispazo eléctrico que dispara cada cámara. Titulares en Big Shoulders Display
+   (grotesca condensada de cartel), texto en Libre Caslon Text (imprenta del XIX) y cifras en Martian Mono. */
+@theme {
+  --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-sans: "Libre Caslon Text", Georgia, serif;
+  --font-mono: "Martian Mono", ui-monospace, monospace;
+
+  --color-negro: oklch(14% 0.004 230);
+  --color-negro-2: oklch(19% 0.006 230);
+  --color-negro-3: oklch(30% 0.008 230);
+  --color-albumina: oklch(92% 0.018 80);
+  --color-albumina-2: oklch(84% 0.022 75);
+  --color-albumina-3: oklch(66% 0.02 70);
+  --color-tinta: oklch(20% 0.008 60);
+  --color-tinta-2: oklch(38% 0.012 60);
+  --color-chispa: oklch(78% 0.13 210);
+  --color-chispa-osc: oklch(52% 0.11 215);
+
+  --text-hero: clamp(3.75rem, 12vw, 12.5rem);
+  --text-hero--line-height: 0.84;
+
+  --text-display: clamp(2.5rem, 6vw, 5.5rem);
+  --text-display--line-height: 0.92;
+
+  --text-lead: clamp(1.125rem, 1.5vw, 1.4375rem);
+  --text-lead--line-height: 1.5;
+
+  --text-body: clamp(1rem, 1.05vw, 1.125rem);
+  --text-body--line-height: 1.6;
+
+  --text-etiqueta: 0.6875rem;
+  --text-etiqueta--line-height: 1.3;
+  --text-etiqueta--letter-spacing: 0.14em;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    background: var(--color-negro);
+  }
+  body {
+    margin: 0;
+    background: var(--color-negro);
+    color: var(--color-albumina);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-chispa);
+    color: var(--color-negro);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-chispa);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .h-pantalla {
+    height: 100svh;
+  }
+  .etiqueta {
+    font-size: var(--text-etiqueta);
+    letter-spacing: var(--text-etiqueta--letter-spacing);
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+    font-weight: 400;
+  }
+  /* Rejilla del fondo de Muybridge en Pensilvania: líneas blancas finas sobre negro. */
+  .rejilla {
+    background-color: var(--color-negro);
+    background-image:
+      linear-gradient(to right, oklch(92% 0.018 80 / 0.09) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(92% 0.018 80 / 0.09) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  /* Las mismas líneas, en tinta, sobre papel de albúmina. */
+  .rejilla-clara {
+    background-color: var(--color-albumina);
+    background-image:
+      linear-gradient(to right, oklch(20% 0.008 60 / 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(20% 0.008 60 / 0.08) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  /* Cámaras de la pista: espera (apagada), disparo (destello cian) y hecha (rescoldo). */
+  .camara {
+    border-color: oklch(92% 0.018 80 / 0.28);
+    background: var(--color-negro-2);
+    transition: background-color 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+  .camara .lente {
+    border-color: oklch(92% 0.018 80 / 0.45);
+    transition: background-color 0.25s;
+  }
+  .camara[data-estado='disparo'] {
+    background: var(--color-chispa);
+    border-color: var(--color-chispa);
+    box-shadow: 0 0 28px oklch(78% 0.13 210 / 0.7);
+  }
+  .camara[data-estado='disparo'] .lente {
+    border-color: var(--color-negro);
+    background: var(--color-albumina);
+  }
+  .camara[data-estado='hecha'] {
+    border-color: oklch(78% 0.13 210 / 0.6);
+  }
+  .camara[data-estado='hecha'] .lente {
+    border-color: var(--color-chispa);
+    background: oklch(78% 0.13 210 / 0.35);
+  }
+  .aviso-aire {
+    transition: opacity 0.15s;
+  }
+  .aviso-aire[data-activo='no'] {
+    opacity: 0;
+  }
+  .mini {
+    opacity: 0.45;
+    outline: 2px solid transparent;
+    outline-offset: 1px;
+  }
+  .mini[data-actual='si'] {
+    opacity: 1;
+    outline-color: var(--color-chispa-osc);
+  }
+  .indice[data-actual='si'] {
+    color: var(--color-chispa);
+  }
+  .albumina {
+    filter: sepia(0.28) contrast(1.06) brightness(0.98);
+  }
+  [data-aparece] {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    transition:
+      opacity 0.6s cubic-bezier(0.2, 0.7, 0.1, 1),
+      transform 0.6s cubic-bezier(0.2, 0.7, 0.1, 1);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  [data-aparece].dentro {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-aparece] {
+      transform: none;
+      transition-duration: 0.01ms;
+    }
+  }
+}
